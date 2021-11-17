@@ -80,6 +80,6 @@ export default new Vuex.Store({
     },
     removeProduct: (context, product) => {
       context.commit("removeFromCart", product);
-    }
+    },
   },
 });

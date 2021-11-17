@@ -13,7 +13,9 @@
     <button v-if="!product.isFavorite" @click="addToFavorite(product)">
       В избранное
     </button>
-    <button v-else @click="removeFromFavorite(product)">Удалить из избранного</button>
+    <button v-else @click="removeFromFavorite(product)">
+      Удалить из избранного
+    </button>
     в корзине: {{ product.countInCart }}
   </div>
 </template>
@@ -56,7 +58,7 @@ export default {
     },
     removeFromFavorite(product) {
       this.$store.commit("removeProductFromFavorite", product);
-    }
+    },
   },
 };
 </script>
