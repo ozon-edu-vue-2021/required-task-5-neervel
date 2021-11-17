@@ -1,31 +1,35 @@
 <template>
   <div id="app">
+    <router-link to="/">Магазин</router-link>
+    <router-link to="/cart">Корзина</router-link>
+    <router-link to="/favorite">Избранное</router-link>
+    <router-view />
   </div>
 </template>
 
 <script>
+import { mapActions } from "vuex";
 
 export default {
   name: "App",
-  components: {
-    Form,
+  data() {
+    return {};
+  },
+  methods: {
+    ...mapActions(["getAllProducts"]),
+  },
+  mounted() {
+    this.$store.dispatch("getAllProducts");
   },
 };
 </script>
 
 <style>
+@import url("https://fonts.googleapis.com/css2?family=Raleway:wght@300;400;500;700&display=swap");
 #app {
-  font-family: Avenir, Helvetica, Arial, sans-serif;
+  font-family: Raleway, sans-serif;
   color: #2c3e50;
-  background-color: #fafafa;
-  padding: 24px;
   box-sizing: border-box;
-}
-
-html,
-body,
-#app {
-  height: 100%;
 }
 
 * {
