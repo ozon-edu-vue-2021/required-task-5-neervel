@@ -1,22 +1,22 @@
 <template>
   <div class="product">
-    <img :src="product.imgUrl" />
+    <!-- <img :src="product.imgUrl" /> -->
     <h2 class="product__title">{{ product.dish }}</h2>
     <p class="product__price">{{ product.price }} ₿</p>
-    <button @click="addToCart(product)" v-if="!product.inCart">
-      В корзину
-    </button>
-    <div v-else>
-      <button @click="removeFromCart(product)">-</button>
-      <button @click="addToCart(product)">+</button>
-    </div>
     <button v-if="!product.isFavorite" @click="addToFavorite(product)">
       В избранное
     </button>
     <button v-else @click="removeFromFavorite(product)">
       Удалить из избранного
     </button>
-    в корзине: {{ product.countInCart }}
+    <button @click="addToCart(product)" v-if="!product.inCart">
+      В корзину
+    </button>
+    <div v-else class="product-counter">
+      <button @click="removeFromCart(product)">-</button>
+      <button @click="addToCart(product)">+</button>
+    </div>
+    <router-link to="/cart">в корзине: {{ product.countInCart }}</router-link>
   </div>
 </template>
 
@@ -63,4 +63,23 @@ export default {
 };
 </script>
 
-<style></style>
+<style scoped>
+.product {
+  background-color: rgb(230, 229, 248);
+  border-radius: 15px;
+  padding: 20px;
+  display: flex;
+  align-items: center;
+  flex-direction: column;
+}
+.product button {
+  margin: 10px auto;
+}
+.product-counter {
+  display: flex;
+  align-items: center;
+}
+.product-counter button {
+  margin: 10px;
+}
+</style>

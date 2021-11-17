@@ -31,4 +31,13 @@ export default {
 };
 </script>
 
-<style></style>
+<style scoped>
+.favorite {
+  padding: 30px;
+}
+.favorite-products {
+  display: grid;
+  grid-template-columns: repeat(3, 1fr);
+  grid-gap: 20px;
+}
+</style>

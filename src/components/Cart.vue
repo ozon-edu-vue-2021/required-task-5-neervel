@@ -4,24 +4,26 @@
     <div class="cart-empty" v-if="productsInCart.length < 1">
       Корзина пустая
     </div>
-    <div class="cart-products" v-else>
-      <ProductInCart
-        v-for="product in productsInCart"
-        :key="product.uid"
-        :product="product"
-      />
+    <div v-else>
+      <div class="cart-products">
+        <Product
+          v-for="product in productsInCart"
+          :key="product.uid"
+          :product="product"
+        />
+      </div>
+      <button class="cart-order" @click="createOrder">Оформить</button>
     </div>
-    <button @click="createOrder">Оформить</button>
   </div>
 </template>
 
 <script>
-import ProductInCart from "./ProductInCart.vue";
+import Product from "./Product.vue";
 import { mapState } from "vuex";
 export default {
   name: "Cart",
   components: {
-    ProductInCart,
+    Product,
   },
   computed: {
     ...mapState(["allProducts"]),
@@ -37,4 +39,16 @@ export default {
 };
 </script>
 
-<style></style>
+<style scoped>
+.cart {
+  padding: 30px;
+}
+.cart-products {
+  display: grid;
+  grid-gap: 20px;
+  grid-template-columns: repeat(3, 1fr);
+}
+.cart-order {
+  margin: 30px auto;
+}
+</style>

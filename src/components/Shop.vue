@@ -28,6 +28,9 @@ export default {
 </script>
 
 <style scoped>
+.shop {
+  padding: 30px;
+}
 .shop-products {
   display: grid;
   grid-template-columns: 1fr 1fr 1fr;
