@@ -10,6 +10,17 @@ export default new Vuex.Store({
     productsInCart: [],
   }),
   mutations: {
+    addAllProducts(store, items) {
+      items.forEach((item) => {
+        item.price = Math.floor(Math.random() * 500);
+        const imgNumber = Math.floor(Math.random() * 12);
+        item.imgUrl = `..src/assets/images/${imgNumber}.webp`;
+        item.inCart = false;
+        item.isFavorite = false;
+        item.countInCart = 0;
+        store.allProducts.push(item);
+      });
+    },
     addProductToCart(store, selectedProduct) {
       if (!selectedProduct.inCart) {
         store.allProducts.forEach((product) => {
@@ -36,25 +47,6 @@ export default new Vuex.Store({
         }
       });
     },
-    removeProductFromCart(store, selectedItem) {
-      store.allProducts.forEach((item) => {
-        if (item.uid == selectedItem.uid) {
-          item.inCart = false;
-          item.countInCart = 0;
-        }
-      });
-    },
-    addAllProducts(store, items) {
-      items.forEach((item) => {
-        item.price = Math.floor(Math.random() * 500);
-        const imgNumber = Math.floor(Math.random() * 12);
-        item.imgUrl = `..src/assets/images/${imgNumber}.webp`;
-        item.inCart = false;
-        item.isFavorite = false;
-        item.countInCart = 0;
-        store.allProducts.push(item);
-      });
-    },
     addProductToFavorite(store, favoriteProduct) {
       store.allProducts.forEach((product) => {
         if (product.uid === favoriteProduct.uid) {
@@ -78,8 +70,17 @@ export default new Vuex.Store({
           context.commit("addAllProducts", response.data);
         });
     },
-    removeProduct: (context, product) => {
-      context.commit("removeFromCart", product);
+    addProductToCart: (context, item) => {
+      context.commit("addProductToCart", item);
+    },
+    minusFromCart: (context, item) => {
+      context.commit("minusFromCart", item);
+    },
+    addProductToFavorite: (context, item) => {
+      context.commit("addProductToFavorite", item);
+    },
+    removeProductFromFavorite: (context, item) => {
+      context.commit("removeProductFromFavorite", item);
     },
   },
 });

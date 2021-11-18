@@ -26,10 +26,12 @@ export default {
     return {};
   },
   methods: {
-    ...mapActions(["getAllProducts"]),
+    ...mapActions({
+      getAllProducts: "getAllProducts",
+    }),
   },
   mounted() {
-    this.$store.dispatch("getAllProducts");
+    this.getAllProducts();
   },
 };
 </script>

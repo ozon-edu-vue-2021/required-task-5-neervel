@@ -28,7 +28,7 @@ export default {
   computed: {
     ...mapState(["allProducts"]),
     productsInCart() {
-      return this.allProducts.filter((item) => item.inCart === true);
+      return this.allProducts.filter((item) => item.inCart);
     },
   },
   methods: {
